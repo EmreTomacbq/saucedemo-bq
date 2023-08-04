@@ -1,5 +1,4 @@
-import { $ } from '@wdio/globals'
-import Page from './page.js';
+import Page from "./page.js";
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -9,17 +8,19 @@ class LoginPage extends Page {
      * define selectors using getter methods
      */
     public get inputUsername () {
-        return $('#username');
+        return $("#user-name");
     }
 
     public get inputPassword () {
-        return $('#password');
+        return $("#password");
     }
 
     public get btnSubmit () {
-        return $('button[type="submit"]');
+        return $("#login-button");
     }
-
+    public get blockedUser () {
+        return $("h3[data-test='error']");
+    }
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
@@ -29,12 +30,19 @@ class LoginPage extends Page {
         await this.inputPassword.setValue(password);
         await this.btnSubmit.click();
     }
-
+    public async loginBlocked () {
+        await expect(await this.blockedUser).toHaveTextContaining("Epic sadface: Sorry, this user has been locked out.");
+    }
+    // @typescript-eslint/no-unused-vars
+    public async checkMessage (message?: string){
+        //....
+        console.log(message);
+    }
     /**
      * overwrite specific options to adapt it to page object
      */
     public open () {
-        return super.open('login');
+        return super.open("");
     }
 }
 
