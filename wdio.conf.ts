@@ -35,7 +35,7 @@ export const config: Options.Testrunner = {
         //'./web/feature/**/WEB-010.feature',
         //'./web/feature/cim_suite/*.feature',
         //'./web/feature/footer_suite/*.feature',
-        './web/feature/navigation_suite/*.feature'
+        './web/feature/cim_suite/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -66,7 +66,12 @@ export const config: Options.Testrunner = {
     capabilities: [{
         browserName: 'chrome'
     }],
-
+    services: [
+        ['safaridriver', {
+            outputDir: './logs',
+            logFileName: 'wdio-safaridriver.log'
+        }]
+    ],
     //
     // ===================
     // Test Configurations
@@ -345,4 +350,10 @@ export const config: Options.Testrunner = {
     */
     // onReload: function(oldSessionId, newSessionId) {
     // }
+    afterStep: async function (step, scenario, result) {
+		if (!result.passed) {
+			// Attach a screenshot in a before hook
+			await cucumberJson.attach(await browser.takeScreenshot(), 'image/png');
+		}
+	},
 }

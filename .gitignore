@@ -1,3 +1,7 @@
 node_modules
 allure-results
 json-reports
+allure-report
+.husky
+.eslintrc.json
+_

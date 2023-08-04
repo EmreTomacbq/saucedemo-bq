@@ -64,8 +64,20 @@ export const config: Options.Testrunner = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'edge'
+        browserName: 'MicrosoftEdge'
     }],
+    services: [
+        'edgedriver',
+        // service options
+        {
+            outputDir: './logs',
+            // see https://github.com/webdriverio-community/node-edgedriver#options for more
+            // options that can be passed into EdgeDriver directly
+            edgedriverOptions: {
+                verbose: true
+            }
+        }
+    ],
 
     //
     // ===================
