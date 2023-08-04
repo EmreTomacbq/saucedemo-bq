@@ -18,9 +18,11 @@
   },
   "scripts": {
     "wdio": "wdio run ./wdio.conf.ts",
+    "report": "allure generate ./allure-results --clean && allure open",
     "lint": "npx eslint . --ext .ts,.tsx --max-warnings=0;"
   },
   "dependencies": {
-    "@faker-js/faker": "^8.0.2"
+    "@faker-js/faker": "^8.0.2",
+    "wdio-cucumberjs-json-reporter": "^5.1.6"
   }
 }

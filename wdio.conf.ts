@@ -31,7 +31,11 @@ export const config: Options.Testrunner = {
     // will be called from there.
     //
     specs: [
-        './web/features/**/*.feature'
+        // './web/feature/**/*.feature',
+        //'./web/feature/**/WEB-010.feature',
+        //'./web/feature/cim_suite/*.feature',
+        //'./web/feature/footer_suite/*.feature',
+        './web/feature/navigation_suite/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -132,7 +136,23 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: 
+    [   
+        'spec',
+        ['allure', {
+            outputDir: 'allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false,
+            useCucumberStepReporter: true,
+        }],
+        [
+			'cucumberjs-json',
+			{
+				jsonFolder: 'json-reports/',
+				language: 'en',
+			},
+		],
+    ],
 
     //
     // If you are using Cucumber you need to specify the location of your step definitions.

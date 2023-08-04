@@ -52,7 +52,7 @@ class AboutPage extends Page {
         await expect(this.aboutpageHeadline).toBeExisting();
         await expect(this.aboutpageHeadline).toHaveTextContaining("Website and mobile testingat every stage of development");
         await expect(this.aboutpageDescription).toBeExisting();
-        await expect(this.aboutpageDescription).toHaveTextContaining("The world relies on your code. Test on thousands of device, browser, and OS configurations – anywhere, any time.");
+        await expect(this.aboutpageDescription).toHaveTextContaining("The world relies on your code. Test on thousands of different device, browser, and OS configurations–anywhere, any time.");
         await expect(this.startFreeButton).toBeExisting();
         await expect(this.requestDemoButton).toBeExisting();
         await expect(this.headerImg).toBeExisting();
